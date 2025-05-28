@@ -5,7 +5,10 @@ services:
     plan: free
     dockerfilePath: ./Dockerfile
     buildCommand: ""
-    startCommand: "php artisan serve --host=0.0.0.0 --port=8080"
+    startCommand: >
+      php artisan migrate --force &&
+      php artisan db:seed --force &&
+      php artisan serve --host=0.0.0.0 --port=8080
     envVars:
       - key: APP_ENV
         value: production
@@ -13,3 +16,15 @@ services:
         value: false
       - key: APP_KEY
         value: "base64:cIftllNdhRXMNJUqvX6J4t+4EnA/k+8H/SVgVmIChQA="
+      - key: DB_CONNECTION
+        value: pgsql
+      - key: DB_HOST
+        value: dpg-d0ri4c15pdvs73e13j0g-a.render.com
+      - key: DB_PORT
+        value: "5432"
+      - key: DB_DATABASE
+        value: dashboard_db_bgnt
+      - key: DB_USERNAME
+        value: dashboard_db_bgnt_user
+      - key: DB_PASSWORD
+        value: tYRL6bwo0YDREe6qz2a0oVBUxiH2bPGe
