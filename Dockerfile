@@ -26,6 +26,7 @@ COPY . .
 RUN composer install
 RUN php artisan config:cache
 RUN php artisan route:cache
+RUN php artisan migrate --force && php artisan db:seed --force
 
 # إعداد صلاحيات المجلدات
 RUN chmod -R 775 storage bootstrap/cache
