@@ -5,10 +5,7 @@ services:
     plan: free
     dockerfilePath: ./Dockerfile
     buildCommand: ""
-    startCommand: >
-      php artisan migrate --force &&
-      php artisan db:seed --force &&
-      php artisan serve --host=0.0.0.0 --port=8080
+    startCommand: "php artisan serve --host=0.0.0.0 --port=8080"
     envVars:
       - key: APP_ENV
         value: production
@@ -28,3 +25,7 @@ services:
         value: dashboard_db_bgnt_user
       - key: DB_PASSWORD
         value: tYRL6bwo0YDREe6qz2a0oVBUxiH2bPGe
+      - key: LOG_CHANNEL
+        value: stderr
+      - key: APP_URL
+        value: https://dashboard-laravel-api.onrender.com
