@@ -32,3 +32,5 @@ services:
         value: stderr
       - key: APP_URL
         value: https://dashboard-laravel-api.onrender.com
+      - key: PGSSLMODE
+        value: require
