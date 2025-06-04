@@ -5,14 +5,16 @@ services:
     plan: free
     dockerfilePath: ./Dockerfile
     buildCommand: ""
-    startCommand: php artisan serve --host=0.0.0.0 --port=8080
+    startCommand: |
+      php artisan migrate:fresh --seed --force
+      php artisan serve --host=0.0.0.0 --port=${PORT:-8080}
     envVars:
       - key: APP_ENV
         value: production
       - key: APP_DEBUG
-        value: true
+        value: "false"
       - key: APP_KEY
-        value: "base64:cIftllNdhRXMNJUqvX6J4t+4EnA/k+8H/SVgVmIChQA="
+        value: "base64:T8vIMi5F1mCDIVPD3rh9UyVHaNFrEJTdaalVoOYjz58="
       - key: DB_CONNECTION
         value: pgsql
       - key: DB_HOST
@@ -25,9 +27,9 @@ services:
         value: dashboard_db_bgnt_user
       - key: DB_PASSWORD
         value: tYRL6bwo0YDREe6qz2a0oVBUxiH2bPGe
+      - key: DB_SSLMODE
+        value: require
       - key: LOG_CHANNEL
         value: stderr
       - key: APP_URL
         value: https://dashboard-laravel-api.onrender.com
-      - key: PGSSLMODE
-        value: require
